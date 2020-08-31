@@ -1,4 +1,4 @@
-package com.sanix.Twitter.controllers;
+package com.sanix.Twitter.api;
 
 import com.sanix.Twitter.models.User;
 import com.sanix.Twitter.services.UserService;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/users")
 public class UserController {
 
 
@@ -19,7 +19,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
+    @GetMapping("/api/")
     public List<User> getAllUsers(){
         return userService.getAll();
     }

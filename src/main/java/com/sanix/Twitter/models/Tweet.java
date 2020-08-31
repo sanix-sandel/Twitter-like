@@ -6,6 +6,8 @@ import javax.validation.constraints.Size;
 import java.time.Instant;
 import java.util.Set;
 
+import static javax.persistence.FetchType.LAZY;
+
 @Entity
 public class Tweet {
 
@@ -17,7 +19,8 @@ public class Tweet {
     @Size(min=5, message="A tweet must be at least 5 characters")
     private String content;
 
-    @ManyToOne
+    @ManyToOne//(fetch=LAZY)
+    @JoinColumn(name="userid", referencedColumnName="id")
     private User author;
 
     @OneToMany(cascade= CascadeType.ALL, mappedBy="tweet")
