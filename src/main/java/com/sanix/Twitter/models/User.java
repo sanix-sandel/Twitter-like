@@ -29,6 +29,17 @@ public class User {
     @OneToMany(cascade=CascadeType.ALL, mappedBy="author")
     private Set<Comment> comments;
 
+    @NotBlank(message="Password required")
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Set<Comment> getComments() {
         return comments;
     }

@@ -1,5 +1,7 @@
 package com.sanix.Twitter.models;
 
+import lombok.Builder;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -9,6 +11,7 @@ import java.util.Set;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
+@Builder
 public class Tweet {
 
     @Id
@@ -19,7 +22,7 @@ public class Tweet {
     @Size(min=5, message="A tweet must be at least 5 characters")
     private String content;
 
-    @ManyToOne//(fetch=LAZY)
+    @ManyToOne(fetch=LAZY)
     @JoinColumn(name="userid", referencedColumnName="id")
     private User author;
 
