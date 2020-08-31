@@ -27,13 +27,13 @@ public class User {
     private Set<Tweet> tweets;
 
     @OneToMany(cascade=CascadeType.ALL, mappedBy="author")
-    private Comment comments;
+    private Set<Comment> comments;
 
-    public Comment getComments() {
+    public Set<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(Comment comments) {
+    public void setComments(Set<Comment> comments) {
         this.comments = comments;
     }
 

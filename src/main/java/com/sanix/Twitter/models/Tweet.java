@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.Instant;
+import java.util.Set;
 
 @Entity
 public class Tweet {
@@ -20,7 +21,7 @@ public class Tweet {
     private User author;
 
     @OneToMany(cascade= CascadeType.ALL, mappedBy="tweet")
-    private Comment comments;
+    private Set<Comment> comments;
 
     private Instant created;
 
@@ -48,11 +49,11 @@ public class Tweet {
         this.author = author;
     }
 
-    public Comment getComments() {
+    public Set<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(Comment comments) {
+    public void setComments(Set<Comment> comments) {
         this.comments = comments;
     }
 }
