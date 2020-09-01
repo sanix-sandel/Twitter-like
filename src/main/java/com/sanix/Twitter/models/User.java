@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -23,8 +24,8 @@ public class User {
     @NotNull
     private String email;
 
-    @OneToMany(cascade= CascadeType.ALL, mappedBy="author")
-    private Set<Tweet> tweets;
+    @OneToMany(cascade= CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="author")
+    private Set<Tweet> tweets=new HashSet<>();
 
     @OneToMany(cascade=CascadeType.ALL, mappedBy="author")
     private Set<Comment> comments;
@@ -34,6 +35,10 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+    public User addTweet(Tweet tweet){
+        this.tweets.add(tweet);
+        return this;
     }
 
     public void setPassword(String password) {

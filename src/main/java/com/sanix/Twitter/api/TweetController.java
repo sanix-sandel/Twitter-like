@@ -26,7 +26,7 @@ public class TweetController {
 
     }
 
-    @GetMapping("/{id}")
+    /*@GetMapping("/{id}")
     public TweetDto getTweet(@PathVariable Long id){
         return tweetService.getTweet(id);
     }
@@ -34,5 +34,5 @@ public class TweetController {
     @PostMapping
     public TweetDto create(@RequestBody @Valid TweetDto tweetDto){
         return tweetService.save(tweetDto);
-    }
+    }*/
 }

@@ -5,6 +5,7 @@ import com.sanix.Twitter.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
@@ -23,5 +24,14 @@ public class UserService {
         return userRepository.findAll()
                 .stream()
                 .collect(toList());
+    }
+
+    public User findByUsername(String username){
+        Optional <User> userOptional=userRepository.findByUsername(username);
+
+        if(!userOptional.isPresent()){
+            throw new RuntimeException("User not found");
+        }
+        return userOptional.get();
     }
 }

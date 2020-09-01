@@ -8,6 +8,7 @@ import com.sanix.Twitter.repositories.TweetRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -26,13 +27,14 @@ public class TweetService {
 
     @Transactional
     public List<Tweet> getAll(){
-        return tweetRepository.findAll()
-                .stream()
-               // .map(this::mapToDto)
-                .collect(toList());
+
+        List<Tweet> tweetList=new ArrayList<>();
+        tweetRepository.findAll().iterator().forEachRemaining(tweetList::add);
+        return tweetList;
+
     }
 
-    @Transactional
+    /*@Transactional
     public TweetDto save(TweetDto tweetDto){
         Tweet tweet=tweetRepository.save(mapToTweet(tweetDto));
         tweetDto.setId(tweet.getId());
@@ -56,5 +58,5 @@ public class TweetService {
                 .id(tweetDto.getId())
                 .created(now())
                 .build();
-    }
+    }*/
 }

@@ -9,20 +9,19 @@ import java.time.Instant;
 import java.util.Set;
 
 import static javax.persistence.FetchType.LAZY;
-
+//@Builder
 @Entity
-@Builder
 public class Tweet {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Size(min=5, message="A tweet must be at least 5 characters")
+    //@NotBlank
+    //@Size(min=5, message="A tweet must be at least 5 characters")
     private String content;
 
-    @ManyToOne(fetch=LAZY)
+    @ManyToOne//(fetch=LAZY)
     @JoinColumn(name="userid", referencedColumnName="id")
     private User author;
 
@@ -51,8 +50,10 @@ public class Tweet {
         return author;
     }
 
-    public void setAuthor(User author) {
+    public Tweet setAuthor(User author) {
         this.author = author;
+        author.addTweet(this);
+        return this;
     }
 
     public Set<Comment> getComments() {
