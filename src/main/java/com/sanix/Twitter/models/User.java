@@ -10,6 +10,8 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
+import static javax.persistence.FetchType.LAZY;
+
 @Entity
 public class User {
 
@@ -24,7 +26,7 @@ public class User {
     @NotNull
     private String email;
 
-    @OneToMany(cascade= CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="author")
+    @OneToMany(cascade= CascadeType.ALL, mappedBy="author")
     private Set<Tweet> tweets=new HashSet<>();
 
     @OneToMany(cascade=CascadeType.ALL, mappedBy="author")
@@ -36,7 +38,10 @@ public class User {
     public String getPassword() {
         return password;
     }
+
     public User addTweet(Tweet tweet){
+
+        //tweet.setAuthor(this);
         this.tweets.add(tweet);
         return this;
     }

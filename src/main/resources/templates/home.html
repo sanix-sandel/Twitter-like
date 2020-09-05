@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--https://bootsnipp.com/snippets/VvvBV-->
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
@@ -421,21 +421,21 @@ a {
 
 
             <div class="col-6">
-                <ol class="tweet-list">
+                <ol class="tweet-list" th:each="tweet : ${tweets}">
                     <li class="tweet-card">
                         <div class="tweet-content">
                             <div class="tweet-header">
                                 <span class="fullname">
-                                <strong>Jon Vadillo</strong>
+                                <strong th:text="${tweet.author.username}">Jon Vadillo</strong>
                                 </span>
-                                <span class="username">@JonVadillo</span>
+                                <span class="username" th:text="${tweet.author.username}">@JonVadillo</span>
                                 <span class="tweet-time">- Jul 18</span>
                             </div>
                             <a>
                                 <img class="tweet-card-avatar" src="https://pbs.twimg.com/profile_images/679974972278849537/bzzb-6H4_bigger.jpg" alt="">
                             </a>
                             <div class="tweet-text">
-                                <p class="" lang="es" data-aria-label-part="0">¡Nuevo artículo en Mozilla!<br>Resuelto: Corregido – Una breve historia sobre un error reportado por la comunidad <a href="https://t.co/dqg5hVQXA0" class="twitter-timeline-link" target="_blank"><span class="">https://www.mozilla-hispano.org/</span></a> <a href="" class="twitter-hashtag"><s>#</s><b>firefox</b></a> <a href="" class="twitter-hashtag"><s>#</s><b>comunidad</b></a>
+                                <p class="" lang="es" data-aria-label-part="0" th:text="${tweet.content}">¡Nuevo artículo en Mozilla!<br>Resuelto: Corregido – Una breve historia sobre un error reportado por la comunidad <a href="https://t.co/dqg5hVQXA0" class="twitter-timeline-link" target="_blank"><span class="">https://www.mozilla-hispano.org/</span></a> <a href="" class="twitter-hashtag"><s>#</s><b>firefox</b></a> <a href="" class="twitter-hashtag"><s>#</s><b>comunidad</b></a>
                                     <a href="" class="twitter-hashtag" dir="ltr"></a>
                                 </p>
                             </div>

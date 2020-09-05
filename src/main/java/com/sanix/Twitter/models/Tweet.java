@@ -1,5 +1,6 @@
 package com.sanix.Twitter.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import javax.validation.constraints.Size;
 import java.time.Instant;
 import java.util.Set;
 
+import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.FetchType.LAZY;
 //@Builder
 @Entity
@@ -21,8 +23,9 @@ public class Tweet {
     //@Size(min=5, message="A tweet must be at least 5 characters")
     private String content;
 
-    @ManyToOne//(fetch=LAZY)
-    @JoinColumn(name="userid", referencedColumnName="id")
+
+
+    @ManyToOne(fetch=EAGER)
     private User author;
 
     @OneToMany(cascade= CascadeType.ALL, mappedBy="tweet")
@@ -50,10 +53,11 @@ public class Tweet {
         return author;
     }
 
-    public Tweet setAuthor(User author) {
-        this.author = author;
-        author.addTweet(this);
-        return this;
+    public void setAuthor(User author) {
+
+        this.author=author;
+        //author.addTweet(this);
+        //author.getTweets().add(this);
     }
 
     public Set<Comment> getComments() {

@@ -57,10 +57,17 @@ public class TweetBootstrap implements ApplicationListener<ContextRefreshedEvent
         Tweet ruthtweet=new Tweet();
         ruthtweet.setContent("Yeah !");
         ruthtweet.setAuthor(ruthuser);
+        //ruthuser.addTweet(ruthtweet);
+
 
         Tweet jesnatweet=new Tweet();
         jesnatweet.setContent("Wohaa !");
         jesnatweet.setAuthor(jesnauser);
+        //jesnauser.addTweet(jesnatweet);
+        jesnauser.getTweets().add(jesnatweet);
+        ruthuser.getTweets().add(ruthtweet);
+
+
 
         tweets.add(ruthtweet);
         tweets.add(jesnatweet);

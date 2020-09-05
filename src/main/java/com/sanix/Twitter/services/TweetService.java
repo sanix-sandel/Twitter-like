@@ -1,6 +1,7 @@
 package com.sanix.Twitter.services;
 
-import com.sanix.Twitter.dto.TweetDto;
+import com.sanix.Twitter.Dto.TweetCreation;
+//import com.sanix.Twitter.dto.TweetDto;
 import com.sanix.Twitter.exceptions.TweetNotFoundException;
 import com.sanix.Twitter.models.Tweet;
 import com.sanix.Twitter.models.User;
@@ -10,29 +11,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 
 import static java.time.Instant.now;
 import static java.util.stream.Collectors.toList;
 
 
-@Service
-public class TweetService {
 
-    private final TweetRepository tweetRepository;
+public interface TweetService {
 
-    public TweetService(TweetRepository tweetRepository) {
-        this.tweetRepository = tweetRepository;
-    }
-
-    @Transactional
-    public List<Tweet> getAll(){
-
-        List<Tweet> tweetList=new ArrayList<>();
-        tweetRepository.findAll().iterator().forEachRemaining(tweetList::add);
-        return tweetList;
-
-    }
+   Set<Tweet> getTweets();
+   Tweet findById(Long l);
+   void createTweet(TweetCreation tweetCreation);
 
     /*@Transactional
     public TweetDto save(TweetDto tweetDto){
