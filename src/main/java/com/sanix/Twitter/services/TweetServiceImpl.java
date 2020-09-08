@@ -47,11 +47,11 @@ public class TweetServiceImpl implements TweetService{
     @Transactional
     public void createTweet(TweetCreation tweetCreation){
         Tweet tweet=new Tweet();
-        Long author_id=tweetCreation.getAuthor_id();
+        String author_username=tweetCreation.getAuthor_username();
         tweet.setContent(tweetCreation.getContent());
-        User user=userService.findById(author_id);
-
+        User user=userService.findByUsername(author_username);
         tweet.setAuthor(user);
+        //user.getTweets().add(tweet);
         tweetRepository.save(tweet);
     }
 }

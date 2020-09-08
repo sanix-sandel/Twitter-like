@@ -27,9 +27,9 @@ public class TweetController {
     }
 
     @GetMapping
-    public Set<Tweet> home(){
-        return tweetService.getTweets();
-
+    public ResponseEntity<Set<Tweet>> home(){
+        Set<Tweet> tweets=tweetService.getTweets();
+        return new ResponseEntity<Set<Tweet>>(tweets, OK);
     }
 
     @PostMapping("new_tweet")

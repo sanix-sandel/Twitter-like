@@ -26,6 +26,7 @@ public class Tweet {
 
 
     @ManyToOne(fetch=EAGER)
+    @JoinColumn(name="author_id", referencedColumnName = "id")
     private User author;
 
     @OneToMany(cascade= CascadeType.ALL, mappedBy="tweet")

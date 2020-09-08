@@ -7,14 +7,9 @@ import java.util.Optional;
 
 public class TweetCreation {
 
-    private final UserService userService;
-
-    public TweetCreation(UserService userService) {
-        this.userService = userService;
-    }
 
     private String content;
-    private Long author_id;
+    private String author_username;
 
     public String getContent() {
         return content;
@@ -24,11 +19,11 @@ public class TweetCreation {
         this.content = content;
     }
 
-    public void setAuthor_id(Long author_id) {
-        this.author_id = author_id;
+    public String getAuthor_username() {
+        return author_username;
     }
 
-    public Long getAuthor_id() {
-        return author_id;
+    public void setAuthor_username(String author_username) {
+        this.author_username = author_username;
     }
 }
