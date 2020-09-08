@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+//@Component
 public class TweetBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
    // private final CommentRepository commentRepository;

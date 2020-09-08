@@ -1,5 +1,6 @@
 package com.sanix.Twitter.services;
 
+import com.sanix.Twitter.Dto.UserRegistration;
 import com.sanix.Twitter.models.User;
 import com.sanix.Twitter.repositories.UserRepository;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,13 @@ public class UserService {
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    public void createUser(UserRegistration userRegistration){
+        User user=new User();
+        user.setUsername(userRegistration.getUsername());
+        user.setEmail(userRegistration.getEmail());
+        userRepository.save(user);
     }
 
     public List<User> getAll(){
