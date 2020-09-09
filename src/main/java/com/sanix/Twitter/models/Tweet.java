@@ -1,6 +1,7 @@
 package com.sanix.Twitter.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Builder;
 
 import javax.persistence.*;
@@ -24,7 +25,7 @@ public class Tweet {
     private String content;
 
 
-
+    @JsonManagedReference
     @ManyToOne(fetch=EAGER)
     @JoinColumn(name="author_id", referencedColumnName = "id")
     private User author;

@@ -1,5 +1,6 @@
 package com.sanix.Twitter.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -26,8 +27,10 @@ public class User {
     @NotNull
     private String email;
 
+    @JsonBackReference
     @OneToMany(cascade= CascadeType.ALL, mappedBy="author")
     private Set<Tweet> tweets=new HashSet<>();
+
 
     @OneToMany(cascade=CascadeType.ALL, mappedBy="author")
     private Set<Comment> comments;

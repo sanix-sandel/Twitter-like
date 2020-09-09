@@ -31,7 +31,6 @@ public class TweetController {
         Set<Tweet> tweets=tweetService.getTweets();
         return new ResponseEntity<Set<Tweet>>(tweets, OK);
     }
-
     @PostMapping("new_tweet")
     public ResponseEntity<String> createTweet(@RequestBody TweetCreation tweetCreation){
         tweetService.createTweet(tweetCreation);
