@@ -39,6 +39,16 @@ public class Tweet {
 
     private Instant created;
 
+    private Integer LikeCount=0;
+
+    public Integer getLikeCount() {
+        return LikeCount;
+    }
+
+    public void setLikeCount(Integer likeCount) {
+        LikeCount = likeCount;
+    }
+
     public Long getId() {
         return id;
     }
