@@ -1,27 +1,12 @@
 package com.sanix.Twitter.services;
 
+import com.sanix.Twitter.Dto.CommentCreation;
 import com.sanix.Twitter.models.Comment;
-import com.sanix.Twitter.models.Tweet;
-import com.sanix.Twitter.repositories.CommentRepository;
-import com.sanix.Twitter.repositories.TweetRepository;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Set;
 
-import static java.util.stream.Collectors.toList;
-
-@Service
-public class CommentService {
-
-    private final CommentRepository commentRepository;
-
-    public CommentService(CommentRepository commentRepository) {
-        this.commentRepository = commentRepository;
-    }
-
-    public List<Comment> getAll(){
-        return commentRepository.findAll()
-                .stream()
-                .collect(toList());
-    }
+public interface CommentService {
+    Set<Comment> getComments();
+    Comment findById(Long l);
+    void createComment(CommentCreation commentCreation);
 }

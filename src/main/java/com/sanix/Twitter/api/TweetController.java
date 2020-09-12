@@ -4,6 +4,7 @@ package com.sanix.Twitter.api;
 import com.sanix.Twitter.Dto.TweetCreation;
 import com.sanix.Twitter.models.Tweet;
 import com.sanix.Twitter.services.TweetService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +17,7 @@ import static java.util.stream.Collectors.toList;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@Controller
-@RequestMapping("/api/")
+@RequestMapping("/api/tweets/")
 public class TweetController {
 
     private final TweetService tweetService;
@@ -27,14 +27,16 @@ public class TweetController {
     }
 
     @GetMapping
-    public ResponseEntity<Set<Tweet>> home(){
+    @ResponseStatus(HttpStatus.OK)
+    public Set<Tweet> home(){
         Set<Tweet> tweets=tweetService.getTweets();
-        return new ResponseEntity<Set<Tweet>>(tweets, OK);
+        return tweets;
     }
+
     @PostMapping("new_tweet")
-    public ResponseEntity<String> createTweet(@RequestBody TweetCreation tweetCreation){
+    public void createTweet(@RequestBody TweetCreation tweetCreation){
         tweetService.createTweet(tweetCreation);
-        return new ResponseEntity<>("Tweet created successfully", OK);
+        //return new ResponseEntity<>("Tweet created successfully", OK);
     }
 
     /*@GetMapping("/{id}")

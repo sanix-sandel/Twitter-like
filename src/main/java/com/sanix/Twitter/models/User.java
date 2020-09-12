@@ -31,9 +31,9 @@ public class User {
     @OneToMany(cascade= CascadeType.ALL, mappedBy="author")
     private Set<Tweet> tweets=new HashSet<>();
 
-
+    @JsonBackReference
     @OneToMany(cascade=CascadeType.ALL, mappedBy="author")
-    private Set<Comment> comments;
+    private Set<Comment> comments=new HashSet<>();
 
     @NotBlank(message="Password required")
     private String password;

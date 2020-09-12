@@ -1,5 +1,6 @@
 package com.sanix.Twitter.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Builder;
@@ -8,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Set;
 
 import static javax.persistence.FetchType.EAGER;
@@ -30,8 +32,10 @@ public class Tweet {
     @JoinColumn(name="author_id", referencedColumnName = "id")
     private User author;
 
+
+    @JsonManagedReference
     @OneToMany(cascade= CascadeType.ALL, mappedBy="tweet")
-    private Set<Comment> comments;
+    private Set<Comment> comments=new HashSet<>();
 
     private Instant created;
 

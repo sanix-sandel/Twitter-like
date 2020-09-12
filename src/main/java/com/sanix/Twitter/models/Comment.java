@@ -1,5 +1,8 @@
 package com.sanix.Twitter.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -16,9 +19,11 @@ public class Comment {
     @Size(min=5, message="Comment must be at least 5 characters")
     private String content;
 
+    @JsonManagedReference
     @ManyToOne
     private User author;
 
+    @JsonBackReference
     @ManyToOne
     private Tweet tweet;
 

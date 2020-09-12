@@ -1,30 +1,34 @@
 package com.sanix.Twitter.api;
 
+import com.sanix.Twitter.Dto.CommentCreation;
 import com.sanix.Twitter.models.Comment;
-import com.sanix.Twitter.models.Tweet;
-import com.sanix.Twitter.services.CommentService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.sanix.Twitter.services.CommentServiceImpl;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-import static java.util.stream.Collectors.toList;
+import java.util.Set;
 
 @RestController
-@RequestMapping("/comments")
+@RequestMapping("/api/comments/")
 public class CommentController {
 
-    private final CommentService commentService;
+    private final CommentServiceImpl commentService;
 
-    public CommentController(CommentService commentService) {
+    public CommentController(CommentServiceImpl commentService) {
         this.commentService = commentService;
     }
 
     @GetMapping
-    public List<Comment> home(){
-        return commentService.getAll()
-                .stream()
-                .collect(toList());
+    @ResponseStatus(HttpStatus.OK)
+    public Set<Comment> home(){
+        Set<Comment> comments=commentService.getComments();
+        return comments;
     }
+
+    @PostMapping("create_comment")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createComment(@RequestBody CommentCreation commentCreation){
+        commentService.createComment(commentCreation);
+    }
+
 }
