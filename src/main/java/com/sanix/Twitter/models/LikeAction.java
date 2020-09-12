@@ -5,7 +5,7 @@ import javax.persistence.*;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
-public class Like {
+public class LikeAction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
