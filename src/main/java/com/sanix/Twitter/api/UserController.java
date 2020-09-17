@@ -2,6 +2,7 @@ package com.sanix.Twitter.api;
 
 import com.sanix.Twitter.Dto.UserRegistration;
 import com.sanix.Twitter.models.User;
+import com.sanix.Twitter.services.AuthService;
 import com.sanix.Twitter.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,18 +19,20 @@ import static org.springframework.http.HttpStatus.OK;
 public class UserController {
 
 
+    private final AuthService authService;
     private final UserService userService;
 
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public UserController(AuthService authService, UserService userService) {
+        this.authService = authService;
+        this.userService=userService;
 
     }
 
-    @RequestMapping("/create")
+    @RequestMapping("/signup")
     public ResponseEntity<String> create_user(@RequestBody UserRegistration userRegistration){
-        userService.createUser(userRegistration);
-        return new ResponseEntity<>("user created successfully", OK);
+        authService.signup(userRegistration);
+        return new ResponseEntity<>("User registered", OK);
     }
 
     @GetMapping("/api/")
