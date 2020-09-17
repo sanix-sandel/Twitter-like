@@ -1,4 +1,10 @@
 package com.sanix.Twitter.models;
 
-public class Retweet {
+import javax.persistence.ManyToMany;
+import java.util.Set;
+
+public class Retweet extends Tweet{
+
+
+
 }

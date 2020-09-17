@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -24,6 +25,7 @@ public class User {
     @Size(min=5, message="Username must be at least 5 characters")
     private String username;
 
+    @Email
     @NotNull
     private String email;
 
@@ -35,7 +37,7 @@ public class User {
     @OneToMany(cascade=CascadeType.ALL, mappedBy="author")
     private Set<Comment> comments=new HashSet<>();
 
-    @NotBlank(message="Password required")
+    @NotBlank(message="Password is required")
     private String password;
 
     public String getPassword() {
