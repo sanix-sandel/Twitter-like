@@ -5,25 +5,21 @@ import com.sanix.Twitter.models.Comment;
 import com.sanix.Twitter.models.Tweet;
 import com.sanix.Twitter.models.User;
 import com.sanix.Twitter.repositories.CommentRepository;
-import com.sanix.Twitter.repositories.TweetRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-
-import static java.util.stream.Collectors.toList;
 
 @Service
 public class CommentServiceImpl implements CommentService{
 
     private final CommentRepository commentRepository;
-    private final UserService userService;
+    private final UserServiceImpl userService;
     private final TweetService tweetService;
 
     public CommentServiceImpl(CommentRepository commentRepository,
-                              UserService userService,
+                              UserServiceImpl userService,
                               TweetService tweetService) {
         this.commentRepository = commentRepository;
         this.userService = userService;

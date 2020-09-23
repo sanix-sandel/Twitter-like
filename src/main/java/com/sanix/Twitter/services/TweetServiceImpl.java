@@ -12,11 +12,11 @@ import java.util.*;
 @Service
 public class TweetServiceImpl implements TweetService{
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
     private final TweetRepository tweetRepository;
 
-    public TweetServiceImpl(TweetRepository tweetRepository, UserService userService) {
+    public TweetServiceImpl(TweetRepository tweetRepository, UserServiceImpl userService) {
         this.tweetRepository = tweetRepository;
         this.userService=userService;
     }

@@ -1,10 +1,5 @@
 package com.sanix.Twitter.Dto;
 
-import com.sanix.Twitter.models.User;
-import com.sanix.Twitter.services.UserService;
-
-import java.util.Optional;
-
 public class TweetCreation {
 
 

@@ -36,11 +36,11 @@ public class UserController {
         return new ResponseEntity<>("User registered", OK);
     }
 
-    @RequestMapping("/login")
+    /*@RequestMapping("/login")
     public ResponseEntity<String> login(@RequestBody UserAuthentication userAuthentication){
         authService.login(userAuthentication);
         return new ResponseEntity<>("User logged in", OK);
-    }
+    }*/
 
     @GetMapping("/api/")
     public List<User> getAllUsers(){

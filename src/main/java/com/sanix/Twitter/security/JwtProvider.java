@@ -1,4 +1,4 @@
-package com.sanix.Twitter.security;
+/*package com.sanix.Twitter.security;
 
 import com.sanix.Twitter.exceptions.TwitterException;
 
@@ -36,7 +36,7 @@ public class JwtProvider {
         }
     }*/
 
-    @PostConstruct
+  /*  @PostConstruct
     public void init(){
         key=Keys.secretKeyFor(SignatureAlgorithm.HS512);
     }
@@ -82,4 +82,5 @@ public class JwtProvider {
     }*/
 
 
-}
+/*}
+*/
