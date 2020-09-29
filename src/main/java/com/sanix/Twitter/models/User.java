@@ -121,4 +121,9 @@ public class User {
         user.getFollowers().add(this);
         this.getFollowing().add(user);
     }
+
+    public void unfollow(User user){
+        user.getFollowers().remove(this);
+        this.getFollowing().remove(user);
+    }
 }

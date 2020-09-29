@@ -1,5 +1,6 @@
 package com.sanix.Twitter.services;
 
+import com.sanix.Twitter.Dto.UserActionDto;
 import com.sanix.Twitter.Dto.UserRegistration;
 import com.sanix.Twitter.models.User;
 import com.sanix.Twitter.repositories.UserRepository;
@@ -56,5 +57,39 @@ public class UserServiceImpl implements UserService{
         return userOptional.get();
     }
 
+    @Override
+    public void follow(UserActionDto userActionDto){
+        Optional <User> userOptional1=userRepository.findById(userActionDto.getId());
+        Optional <User> userOptional2=userRepository.findById(userActionDto.getUser_id());
+
+        if(!userOptional1.isPresent() || !userOptional2.isPresent()){
+            throw new RuntimeException("User not found");
+        }
+
+        User user=userOptional1.get();
+        User target=userOptional2.get();
+
+        user.follow(target);
+        userRepository.save(user);
+        userRepository.save(target);
+    }
+
+
+    @Override
+    public void unfollow(UserActionDto userActionDto){
+        Optional <User> userOptional1=userRepository.findById(userActionDto.getId());
+        Optional <User> userOptional2=userRepository.findById(userActionDto.getUser_id());
+
+        if(!userOptional1.isPresent() || !userOptional2.isPresent()){
+            throw new RuntimeException("User not found");
+        }
+
+        User user=userOptional1.get();
+        User target=userOptional2.get();
+
+        user.unfollow(target);
+        userRepository.save(user);
+        userRepository.save(target);
+    }
 
 }

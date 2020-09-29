@@ -1,15 +1,13 @@
 package com.sanix.Twitter.api;
 
+import com.sanix.Twitter.Dto.UserActionDto;
 import com.sanix.Twitter.Dto.UserAuthentication;
 import com.sanix.Twitter.Dto.UserRegistration;
 import com.sanix.Twitter.models.User;
 //import com.sanix.Twitter.services.AuthService;
 import com.sanix.Twitter.services.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,6 +39,16 @@ public class UserController {
     @GetMapping("/api/")
     public List<User> getAllUsers(){
         return userService.getAll();
+    }
+
+    @PutMapping("/api/follow")
+    public void follow(@RequestBody UserActionDto userActionDto){
+        userService.follow(userActionDto);
+    }
+
+    @PutMapping("/api/unfollow")
+    public void unfollow(@RequestBody UserActionDto userActionDto){
+        userService.unfollow(userActionDto);
     }
 
 

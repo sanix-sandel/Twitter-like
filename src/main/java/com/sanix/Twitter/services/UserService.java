@@ -1,5 +1,6 @@
 package com.sanix.Twitter.services;
 
+import com.sanix.Twitter.Dto.UserActionDto;
 import com.sanix.Twitter.Dto.UserRegistration;
 import com.sanix.Twitter.models.User;
 
@@ -11,4 +12,6 @@ public interface UserService {
     public List<User> getAll();
     public User findByUsername(String username);
     public User findById(Long id);
+    public void follow(UserActionDto userActionDto);
+    public void unfollow(UserActionDto userActionDto);
 }
