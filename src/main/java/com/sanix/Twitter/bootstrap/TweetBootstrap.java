@@ -22,7 +22,7 @@ public class TweetBootstrap implements ApplicationListener<ContextRefreshedEvent
     private final UserRepository userRepository;
 
 
-    public TweetBootstrap(/*CommentRepository commentRepository,*/
+    public TweetBootstrap(CommentRepository commentRepository,
                           TweetRepository tweetRepository,
                           UserRepository userRepository) {
         //this.commentRepository = commentRepository;

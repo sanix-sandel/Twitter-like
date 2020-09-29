@@ -1,9 +1,11 @@
 package com.sanix.Twitter.services;
 
+import com.sanix.Twitter.Dto.TweetActionDto;
 import com.sanix.Twitter.Dto.TweetCreation;
 import com.sanix.Twitter.models.Tweet;
 import com.sanix.Twitter.models.User;
 import com.sanix.Twitter.repositories.TweetRepository;
+import com.sanix.Twitter.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,9 +18,15 @@ public class TweetServiceImpl implements TweetService{
 
     private final TweetRepository tweetRepository;
 
-    public TweetServiceImpl(TweetRepository tweetRepository, UserServiceImpl userService) {
+    private final UserRepository userRepository;
+
+
+    public TweetServiceImpl(TweetRepository tweetRepository,
+                            UserServiceImpl userService,
+                            UserRepository userRepository) {
         this.tweetRepository = tweetRepository;
         this.userService=userService;
+        this.userRepository=userRepository;
     }
 
     @Override
@@ -53,5 +61,18 @@ public class TweetServiceImpl implements TweetService{
         tweet.setAuthor(user);
         //user.getTweets().add(tweet);
         tweetRepository.save(tweet);
+    }
+
+    @Override
+    @Transactional
+    public void likeAction(TweetActionDto tweetActionDto){
+        Optional<Tweet> Optionaltweet=tweetRepository.findById(tweetActionDto.getId());
+        User user=userService.findById(tweetActionDto.getUser_id());
+
+        Tweet tweet=Optionaltweet.get();
+        tweet.addLiker(user);
+        tweetRepository.save(tweet);
+        userRepository.save(user);
+
     }
 }

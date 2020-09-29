@@ -1,18 +1,17 @@
 package com.sanix.Twitter.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
+import org.springframework.jmx.export.annotation.ManagedAttribute;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
-import static javax.persistence.FetchType.LAZY;
+
 
 @Entity
 public class User {
@@ -40,15 +39,36 @@ public class User {
     @NotBlank(message="Password is required")
     private String password;
 
-    public String getPassword() {
-        return password;
+    @ManyToMany
+    @JoinTable(name="tweet_user",
+            joinColumns = @JoinColumn(name="user_id"),
+            inverseJoinColumns=@JoinColumn(name="follower_id"))
+    private Set<User> followers=new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name="tweet_user",
+            joinColumns = @JoinColumn(name="user_id"),
+            inverseJoinColumns=@JoinColumn(name="following_id"))
+    private Set<User> following;
+
+    @ManyToMany
+    @JoinTable(name="tweet_user",
+            joinColumns = @JoinColumn(name="user_id"),
+            inverseJoinColumns=@JoinColumn(name="tweet_id"))
+    private Set<Tweet> tweets_liked;
+
+    public Set<Tweet> getTweets_liked() {
+        return tweets_liked;
     }
 
-    public User addTweet(Tweet tweet){
 
-        //tweet.setAuthor(this);
-        this.tweets.add(tweet);
-        return this;
+
+    public void addTweetLiked(Tweet tweet){
+        this.getTweets_liked().add(tweet);
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void setPassword(String password) {
@@ -59,9 +79,6 @@ public class User {
         return comments;
     }
 
-    public void setComments(Set<Comment> comments) {
-        this.comments = comments;
-    }
 
     public Long getId() {
         return id;
@@ -91,7 +108,17 @@ public class User {
         return tweets;
     }
 
-    public void setTweets(Set<Tweet> tweets) {
-        this.tweets = tweets;
+    public Set<User> getFollowers() {
+        return followers;
+    }
+
+    public Set<User> getFollowing() {
+        return following;
+    }
+
+
+    public void follow(User user){
+        user.getFollowers().add(this);
+        this.getFollowing().add(user);
     }
 }

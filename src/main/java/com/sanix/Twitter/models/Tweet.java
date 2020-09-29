@@ -39,14 +39,30 @@ public class Tweet {
 
     private Instant created;
 
-    private Integer LikeCount=0;
 
-    public Integer getLikeCount() {
-        return LikeCount;
+
+    @ManyToMany
+    @JoinTable(name="tweet_user",
+                joinColumns = @JoinColumn(name="tweet_id"),
+                inverseJoinColumns=@JoinColumn(name="user_id"))
+    private Set<User> likers;
+
+    public Set<User> getLikers() {
+        return likers;
     }
 
-    public void setLikeCount(Integer likeCount) {
-        LikeCount = likeCount;
+    public void addLiker(User liker) {
+        this.getLikers().add(liker);
+        liker.addTweetLiked(this);
+    }
+
+    public Integer getLikeCount() {
+
+        return this.getLikers().size();
+    }
+
+    public Integer getCommentsCount(){
+        return this.getComments().size();
     }
 
     public Long getId() {
@@ -73,7 +89,7 @@ public class Tweet {
 
         this.author=author;
         //author.addTweet(this);
-        //author.getTweets().add(this);
+        author.getTweets().add(this);
     }
 
     public Set<Comment> getComments() {

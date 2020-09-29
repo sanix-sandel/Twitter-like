@@ -7,6 +7,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Comment {
@@ -28,6 +30,12 @@ public class Comment {
     private Tweet tweet;
 
     private Instant created;
+
+    @ManyToMany
+    @JoinTable(name="tweet_user",
+            joinColumns = @JoinColumn(name="tweet_id"),
+            inverseJoinColumns=@JoinColumn(name="user_id"))
+    private Set<User> likers=new HashSet<>();
 
     public Instant getCreated() {
         return created;

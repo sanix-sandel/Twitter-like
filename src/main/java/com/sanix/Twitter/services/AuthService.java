@@ -1,5 +1,5 @@
 package com.sanix.Twitter.services;
-
+/*
 import com.sanix.Twitter.Dto.UserAuthentication;
 import com.sanix.Twitter.Dto.UserRegistration;
 import com.sanix.Twitter.models.User;
@@ -37,5 +37,6 @@ public class AuthService {
         SecurityContextHolder.getContext().setAuthentication(authenticate);
         return jwtProvider.generateToken(authenticate);
 
-    }*/
+    }
 }
+*/
