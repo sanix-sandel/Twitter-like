@@ -39,6 +39,7 @@ public class User {
     @NotBlank(message="Password is required")
     private String password;
 
+
     @ManyToMany
     @JoinTable(name="tweet_user",
             joinColumns = @JoinColumn(name="user_id"),

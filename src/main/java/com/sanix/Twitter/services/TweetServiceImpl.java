@@ -2,6 +2,7 @@ package com.sanix.Twitter.services;
 
 import com.sanix.Twitter.Dto.TweetActionDto;
 import com.sanix.Twitter.Dto.TweetCreation;
+import com.sanix.Twitter.Dto.TweetUpdateDTO;
 import com.sanix.Twitter.models.Tweet;
 import com.sanix.Twitter.models.User;
 import com.sanix.Twitter.repositories.TweetRepository;
@@ -42,13 +43,14 @@ public class TweetServiceImpl implements TweetService{
     @Override
     @Transactional
     public Tweet findById(Long l){
-        Optional<Tweet> tweet=tweetRepository.findById(l);
+        Optional<Tweet> tweetOptional=tweetRepository.findById(l);
 
-        if(! tweet.isPresent()){
+        if(! tweetOptional.isPresent()){
             throw new RuntimeException("Tweet not found");
         }
 
-        return tweet.get();
+        Tweet tweet=tweetOptional.get();
+        return tweet;
     }
 
     @Override
@@ -74,5 +76,30 @@ public class TweetServiceImpl implements TweetService{
         tweetRepository.save(tweet);
         userRepository.save(user);
 
+    }
+
+    @Override
+    @Transactional
+    public void deleteTweet(Long l){
+        Optional<Tweet> tweetOptional=tweetRepository.findById(l);
+        if(! tweetOptional.isPresent()){
+            throw new RuntimeException("Tweet not found");
+        }
+        Tweet tweet=tweetOptional.get();
+        tweetRepository.delete(tweet);
+
+
+    }
+
+    @Override
+    @Transactional
+    public void updateTweet(Long l, TweetUpdateDTO tweetUpdateDTO){
+        Optional <Tweet> tweetOptional=tweetRepository.findById(l);
+        if(! tweetOptional.isPresent()){
+            throw new RuntimeException("Tweet not found ");
+        }
+        Tweet tweet=tweetOptional.get();
+        tweet.setContent(tweetUpdateDTO.getContent());
+        tweetRepository.save(tweet);
     }
 }

@@ -5,6 +5,7 @@ import com.sanix.Twitter.Dto.UserAuthentication;
 import com.sanix.Twitter.Dto.UserRegistration;
 import com.sanix.Twitter.models.User;
 //import com.sanix.Twitter.services.AuthService;
+import com.sanix.Twitter.services.AuthService;
 import com.sanix.Twitter.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,19 +19,19 @@ import static org.springframework.http.HttpStatus.OK;
 public class UserController {
 
 
-   // private final AuthService authService;
+    private final AuthService authService;
     private final UserService userService;
 
 
-    public UserController( UserService userService) {
-        //this.authService = authService;
+    public UserController( UserService userService, AuthService authService) {
+        this.authService = authService;
         this.userService=userService;
 
     }
 
     @RequestMapping("/signup")
     public ResponseEntity<String> create_user(@RequestBody UserRegistration userRegistration){
-        //authService.signup(userRegistration);
+        authService.signup(userRegistration);
         return new ResponseEntity<>("User registered", OK);
     }
 
@@ -50,6 +51,16 @@ public class UserController {
     public void unfollow(@RequestBody UserActionDto userActionDto){
         userService.unfollow(userActionDto);
     }
+
+    /*@GetMapping()
+    public void getFollowers(){
+
+    }
+
+    @GetMapping()
+    public void getFollowings(){
+
+    }*/
 
 
 }

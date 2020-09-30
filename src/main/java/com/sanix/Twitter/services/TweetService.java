@@ -3,6 +3,7 @@ package com.sanix.Twitter.services;
 import com.sanix.Twitter.Dto.TweetActionDto;
 import com.sanix.Twitter.Dto.TweetCreation;
 //import com.sanix.Twitter.dto.TweetDto;
+import com.sanix.Twitter.Dto.TweetUpdateDTO;
 import com.sanix.Twitter.models.Tweet;
 
 import java.util.Set;
@@ -17,6 +18,9 @@ public interface TweetService {
    Tweet findById(Long l);
    void createTweet(TweetCreation tweetCreation);
    void likeAction(TweetActionDto tweetActionDto);
+   void deleteTweet(Long l);
+   void updateTweet(Long l, TweetUpdateDTO tweetUpdateDTO);
+
 
 
 }
