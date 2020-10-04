@@ -15,7 +15,7 @@ import java.util.List;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController {
 
 
@@ -29,11 +29,11 @@ public class UserController {
 
     }
 
-    @RequestMapping("/signup")
+   /* @RequestMapping("/signup")
     public ResponseEntity<String> create_user(@RequestBody UserRegistration userRegistration){
         authService.signup(userRegistration);
         return new ResponseEntity<>("User registered", OK);
-    }
+    }*/
 
 
 
