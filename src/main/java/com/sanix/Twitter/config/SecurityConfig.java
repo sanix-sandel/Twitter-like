@@ -1,5 +1,5 @@
 package com.sanix.Twitter.config;
-
+/*
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,7 +20,7 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
- /*   @Override
+    @Override
     public void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.cors().and()
                 .csrf().disable()
@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/logout.success").permitAll();
     }
 
-*/
+
 
     @Bean
     @Override
@@ -46,8 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new InMemoryUserDetailsManager(users);
     }
 
-  /*  @Bean
+    @Bean
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
-    }*/
+    }
 }
+*/

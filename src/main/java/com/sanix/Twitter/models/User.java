@@ -40,7 +40,7 @@ public class User {
     private String password;
 
 
-    @ManyToMany
+    /*@ManyToMany
     @JoinTable(name="tweet_user",
             joinColumns = @JoinColumn(name="user_id"),
             inverseJoinColumns=@JoinColumn(name="follower_id"))
@@ -51,7 +51,7 @@ public class User {
             joinColumns = @JoinColumn(name="user_id"),
             inverseJoinColumns=@JoinColumn(name="following_id"))
     private Set<User> following;
-
+*/
     @ManyToMany
     @JoinTable(name="tweet_user",
             joinColumns = @JoinColumn(name="user_id"),
@@ -109,7 +109,7 @@ public class User {
         return tweets;
     }
 
-    public Set<User> getFollowers() {
+    /*public Set<User> getFollowers() {
         return followers;
     }
 
@@ -126,5 +126,5 @@ public class User {
     public void unfollow(User user){
         user.getFollowers().remove(this);
         this.getFollowing().remove(user);
-    }
+    }*/
 }

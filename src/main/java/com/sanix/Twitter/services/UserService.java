@@ -12,6 +12,6 @@ public interface UserService {
     public List<User> getAll();
     public User findByUsername(String username);
     public User findById(Long id);
-    public void follow(UserActionDto userActionDto);
-    public void unfollow(UserActionDto userActionDto);
+    //public void follow(UserActionDto userActionDto);
+    //public void unfollow(UserActionDto userActionDto);
 }

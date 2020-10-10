@@ -19,12 +19,12 @@ import static org.springframework.http.HttpStatus.OK;
 public class UserController {
 
 
-    private final AuthService authService;
+    //private final AuthService authService;
     private final UserService userService;
 
 
-    public UserController( UserService userService, AuthService authService) {
-        this.authService = authService;
+    public UserController( UserService userService/*, AuthService authService*/) {
+      //  this.authService = authService;
         this.userService=userService;
 
     }
@@ -37,12 +37,12 @@ public class UserController {
 
 
 
-    @GetMapping("/api/")
+    @GetMapping("")
     public List<User> getAllUsers(){
         return userService.getAll();
     }
 
-    @PutMapping("/api/follow")
+    /*@PutMapping("/api/follow")
     public void follow(@RequestBody UserActionDto userActionDto){
         userService.follow(userActionDto);
     }
@@ -50,7 +50,7 @@ public class UserController {
     @PutMapping("/api/unfollow")
     public void unfollow(@RequestBody UserActionDto userActionDto){
         userService.unfollow(userActionDto);
-    }
+    }*/
 
     /*@GetMapping()
     public void getFollowers(){

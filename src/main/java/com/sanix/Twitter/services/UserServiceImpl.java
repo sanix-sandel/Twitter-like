@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService{
         return userOptional.get();
     }
 
-    @Override
+    /*@Override
     public void follow(UserActionDto userActionDto){
         Optional <User> userOptional1=userRepository.findById(userActionDto.getId());
         Optional <User> userOptional2=userRepository.findById(userActionDto.getUser_id());
@@ -90,6 +90,6 @@ public class UserServiceImpl implements UserService{
         user.unfollow(target);
         userRepository.save(user);
         userRepository.save(target);
-    }
+    }*/
 
 }
