@@ -1,7 +1,6 @@
 package com.sanix.Twitter.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import org.springframework.jmx.export.annotation.ManagedAttribute;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -35,6 +34,10 @@ public class User {
     @JsonBackReference
     @OneToMany(cascade=CascadeType.ALL, mappedBy="author")
     private Set<Comment> comments=new HashSet<>();
+
+    @JsonBackReference
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Contact> contacts=new HashSet<>();
 
     @NotBlank(message="Password is required")
     private String password;
@@ -105,26 +108,29 @@ public class User {
         this.email = email;
     }
 
+    public Set<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(Set<Contact> contacts) {
+        this.contacts = contacts;
+    }
+
+
     public Set<Tweet> getTweets() {
         return tweets;
     }
 
+
     /*public Set<User> getFollowers() {
-        return followers;
+        Set contacts=this.getContacts();
+        Set<User> followers=contacts.forEach.getFollower()
     }
 
     public Set<User> getFollowing() {
-        return following;
+        Set contacts=this.getContacts();
+        Set<User> following=contacts.forEach.getFollowing()
     }
 
-
-    public void follow(User user){
-        user.getFollowers().add(this);
-        this.getFollowing().add(user);
-    }
-
-    public void unfollow(User user){
-        user.getFollowers().remove(this);
-        this.getFollowing().remove(user);
-    }*/
+*/
 }
