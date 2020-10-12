@@ -1,11 +1,13 @@
 package com.sanix.Twitter.api;
 
+import com.sanix.Twitter.Dto.ContactDTO;
 import com.sanix.Twitter.Dto.UserActionDto;
 import com.sanix.Twitter.Dto.UserAuthentication;
 import com.sanix.Twitter.Dto.UserRegistration;
 import com.sanix.Twitter.models.User;
 //import com.sanix.Twitter.services.AuthService;
 import com.sanix.Twitter.services.AuthService;
+import com.sanix.Twitter.services.FollowService;
 import com.sanix.Twitter.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,11 +23,14 @@ public class UserController {
 
     //private final AuthService authService;
     private final UserService userService;
+    private final FollowService followService;
 
 
-    public UserController( UserService userService/*, AuthService authService*/) {
+    public UserController( UserService userService/*, AuthService authService*/,
+                           FollowService followService) {
       //  this.authService = authService;
         this.userService=userService;
+        this.followService=followService;
 
     }
 
@@ -42,11 +47,11 @@ public class UserController {
         return userService.getAll();
     }
 
-    /*@PutMapping("/api/follow")
-    public void follow(@RequestBody UserActionDto userActionDto){
-        userService.follow(userActionDto);
+    @PutMapping("/api/follow")
+    public void follow(@RequestBody ContactDTO contactDTO){
+        followService.follow(contactDTO);
     }
-
+    /*
     @PutMapping("/api/unfollow")
     public void unfollow(@RequestBody UserActionDto userActionDto){
         userService.unfollow(userActionDto);

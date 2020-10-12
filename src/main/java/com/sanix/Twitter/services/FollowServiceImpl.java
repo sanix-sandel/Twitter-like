@@ -5,9 +5,12 @@ import com.sanix.Twitter.models.Contact;
 import com.sanix.Twitter.models.User;
 import com.sanix.Twitter.repositories.ContactRepository;
 import com.sanix.Twitter.repositories.UserRepository;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
+@Service
 public class FollowServiceImpl implements FollowService{
 
     private final UserRepository userRepository;
@@ -30,6 +33,11 @@ public class FollowServiceImpl implements FollowService{
         User followed=followedOptional.get();
 
         Contact contact=new Contact(followed, follower);
+        followed.setContact(contact);
+        follower.setContact(contact);
+
+        userRepository.save(followed);
+        userRepository.save(follower);
         contactRepository.save(contact);
 
     }
@@ -46,5 +54,10 @@ public class FollowServiceImpl implements FollowService{
 
         Contact contact=
         contactRepository.delete(contact);
+        followed.deleteContact(contact);
+        follower.deleteContact(contact);
+
+        userRepository.save(follower);
+        userRepository.save(followed);
     }*/
 }

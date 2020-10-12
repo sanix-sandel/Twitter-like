@@ -112,13 +112,15 @@ public class User {
         return contacts;
     }
 
-    public void setContacts(Set<Contact> contacts) {
-        this.contacts = contacts;
-    }
 
 
     public Set<Tweet> getTweets() {
         return tweets;
+    }
+
+    public void setContact(Contact contact){
+        getContacts().add(contact);
+
     }
 
 
