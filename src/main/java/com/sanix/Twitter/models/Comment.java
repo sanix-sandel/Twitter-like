@@ -14,7 +14,7 @@ import java.util.Set;
 public class Comment {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
     @NotBlank
@@ -32,8 +32,8 @@ public class Comment {
     private Instant created;
 
     @ManyToMany
-    @JoinTable(name="tweet_user",
-            joinColumns = @JoinColumn(name="tweet_id"),
+    @JoinTable(name="comment_user",
+            joinColumns = @JoinColumn(name="comment_id"),
             inverseJoinColumns=@JoinColumn(name="user_id"))
     private Set<User> likers=new HashSet<>();
 

@@ -34,6 +34,11 @@ public class UserController {
 
     }
 
+    @RequestMapping("/signup")
+    public void create_user(@RequestBody UserRegistration userRegistration){
+        userService.createUser(userRegistration);
+    }
+
    /* @RequestMapping("/signup")
     public ResponseEntity<String> create_user(@RequestBody UserRegistration userRegistration){
         authService.signup(userRegistration);
@@ -47,7 +52,7 @@ public class UserController {
         return userService.getAll();
     }
 
-    @PutMapping("/api/follow")
+    @PutMapping("/follow")
     public void follow(@RequestBody ContactDTO contactDTO){
         followService.follow(contactDTO);
     }

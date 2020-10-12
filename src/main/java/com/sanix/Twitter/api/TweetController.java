@@ -23,7 +23,7 @@ public class TweetController {
         this.tweetService = tweetService;
     }
 
-    @GetMapping
+    @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
     public Set<Tweet> home(){
         Set<Tweet> tweets=tweetService.getTweets();

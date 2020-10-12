@@ -19,7 +19,7 @@ import static javax.persistence.FetchType.LAZY;
 public class Tweet {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
     //@NotBlank
@@ -53,7 +53,7 @@ public class Tweet {
 
     public void addLiker(User liker) {
         this.getLikers().add(liker);
-        liker.addTweetLiked(this);
+
     }
 
     public Integer getLikeCount() {

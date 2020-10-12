@@ -18,6 +18,8 @@ public class Contact {
     @ManyToOne
     private User follower;
 
+    public Contact() {
+    }
 
     public Contact(User followed, User follower) {
         this.followed = followed;

@@ -16,7 +16,7 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
     @NotBlank(message="Username is required")
@@ -55,21 +55,8 @@ public class User {
             inverseJoinColumns=@JoinColumn(name="following_id"))
     private Set<User> following;
 */
-    @ManyToMany
-    @JoinTable(name="tweet_user",
-            joinColumns = @JoinColumn(name="user_id"),
-            inverseJoinColumns=@JoinColumn(name="tweet_id"))
-    private Set<Tweet> tweets_liked;
-
-    public Set<Tweet> getTweets_liked() {
-        return tweets_liked;
-    }
 
 
-
-    public void addTweetLiked(Tweet tweet){
-        this.getTweets_liked().add(tweet);
-    }
 
     public String getPassword() {
         return password;
