@@ -71,15 +71,18 @@ public class UserController {
         userService.unfollow(userActionDto);
     }*/
 
-    /*@GetMapping()
-    public void getFollowers(){
-
+    @GetMapping("/{id}/followers")
+    public List<User> getFollowers(@PathVariable ("id")final Long id){
+        User user=userService.findById(id);
+        return contactService.getFollowers(user);
     }
 
-    @GetMapping()
-    public void getFollowings(){
+    @GetMapping("/{id}/followed")
+    public List getFollowings(@PathVariable ("id")final Long id){
+        User user=userService.findById(id);
+        return contactService.getFollowed(user);
 
-    }*/
+    }
 
 
 }
