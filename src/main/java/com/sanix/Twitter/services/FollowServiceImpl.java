@@ -33,11 +33,11 @@ public class FollowServiceImpl implements FollowService{
         User followed=followedOptional.get();
 
         Contact contact=new Contact(followed, follower);
-        followed.setContact(contact);
-        follower.setContact(contact);
+        //followed.setContact(contact);
+        //follower.setContact(contact);
 
-        userRepository.save(followed);
-        userRepository.save(follower);
+        //userRepository.save(followed);
+        //userRepository.save(follower);
         contactRepository.save(contact);
 
     }

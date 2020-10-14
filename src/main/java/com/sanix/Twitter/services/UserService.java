@@ -8,10 +8,10 @@ import java.util.List;
 
 public interface UserService {
 
-    public void createUser(UserRegistration userRegistration);
-    public List<User> getAll();
-    public User findByUsername(String username);
-    public User findById(Long id);
+    void createUser(UserRegistration userRegistration);
+    List<User> getAll();
+    User findByUsername(String username);
+    User findById(Long id);
     //public void follow(UserActionDto userActionDto);
     //public void unfollow(UserActionDto userActionDto);
 }

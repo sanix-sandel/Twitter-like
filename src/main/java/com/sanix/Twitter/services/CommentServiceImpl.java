@@ -5,6 +5,7 @@ import com.sanix.Twitter.models.Comment;
 import com.sanix.Twitter.models.Tweet;
 import com.sanix.Twitter.models.User;
 import com.sanix.Twitter.repositories.CommentRepository;
+import com.sanix.Twitter.repositories.TweetRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -17,13 +18,16 @@ public class CommentServiceImpl implements CommentService{
     private final CommentRepository commentRepository;
     private final UserServiceImpl userService;
     private final TweetService tweetService;
+    private final TweetRepository tweetRepository;
 
     public CommentServiceImpl(CommentRepository commentRepository,
                               UserServiceImpl userService,
-                              TweetService tweetService) {
+                              TweetService tweetService,
+                              TweetRepository tweetRepository) {
         this.commentRepository = commentRepository;
         this.userService = userService;
         this.tweetService = tweetService;
+        this.tweetRepository=tweetRepository;
     }
 
     @Override
@@ -54,6 +58,15 @@ public class CommentServiceImpl implements CommentService{
         Tweet tweet=tweetService.findById(tweet_id);
         comment.setTweet(tweet);
         commentRepository.save(comment);
+    }
+
+    @Override
+    public Set<Comment> CommentsByTweet(Long l){
+        Optional <Tweet> tweetOptional=tweetRepository.findById(l);
+
+        Tweet tweet=tweetOptional.get();
+
+        return tweet.getComments();
     }
 
 }

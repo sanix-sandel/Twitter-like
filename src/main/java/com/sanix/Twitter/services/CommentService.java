@@ -9,4 +9,5 @@ public interface CommentService {
     Set<Comment> getComments();
     Comment findById(Long l);
     void createComment(CommentCreation commentCreation);
+    Set<Comment> CommentsByTweet(Long l);
 }

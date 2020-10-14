@@ -4,9 +4,11 @@ import com.sanix.Twitter.Dto.ContactDTO;
 import com.sanix.Twitter.Dto.UserActionDto;
 import com.sanix.Twitter.Dto.UserAuthentication;
 import com.sanix.Twitter.Dto.UserRegistration;
+import com.sanix.Twitter.models.Contact;
 import com.sanix.Twitter.models.User;
 //import com.sanix.Twitter.services.AuthService;
 import com.sanix.Twitter.services.AuthService;
+import com.sanix.Twitter.services.ContactService;
 import com.sanix.Twitter.services.FollowService;
 import com.sanix.Twitter.services.UserService;
 import org.springframework.http.ResponseEntity;
@@ -21,29 +23,31 @@ import static org.springframework.http.HttpStatus.OK;
 public class UserController {
 
 
-    //private final AuthService authService;
+    private final AuthService authService;
     private final UserService userService;
     private final FollowService followService;
+    private final ContactService contactService;
 
 
-    public UserController( UserService userService/*, AuthService authService*/,
-                           FollowService followService) {
-      //  this.authService = authService;
+    public UserController( UserService userService, AuthService authService,
+                           FollowService followService, ContactService contactService) {
+        this.authService = authService;
         this.userService=userService;
         this.followService=followService;
+        this.contactService=contactService;
 
     }
 
-    @RequestMapping("/signup")
+    /*@RequestMapping("/signup")
     public void create_user(@RequestBody UserRegistration userRegistration){
         userService.createUser(userRegistration);
-    }
+    }*/
 
-   /* @RequestMapping("/signup")
+    @RequestMapping("/signup")
     public ResponseEntity<String> create_user(@RequestBody UserRegistration userRegistration){
         authService.signup(userRegistration);
         return new ResponseEntity<>("User registered", OK);
-    }*/
+    }
 
 
 
@@ -55,6 +59,11 @@ public class UserController {
     @PutMapping("/follow")
     public void follow(@RequestBody ContactDTO contactDTO){
         followService.follow(contactDTO);
+    }
+
+    @GetMapping("/contacts")
+    public List<Contact> allContacts(){
+        return contactService.findAll();
     }
     /*
     @PutMapping("/api/unfollow")
