@@ -38,10 +38,11 @@ public class UserController {
 
     }
 
-    /*@RequestMapping("/signup")
-    public void create_user(@RequestBody UserRegistration userRegistration){
-        userService.createUser(userRegistration);
-    }*/
+    @RequestMapping("/login")
+    public ResponseEntity<String> login(@RequestBody UserAuthentication userAuthentication){
+        authService.login(userAuthentication);
+        return new ResponseEntity<>("User logged", OK);
+    }
 
     @RequestMapping("/signup")
     public ResponseEntity<String> create_user(@RequestBody UserRegistration userRegistration){

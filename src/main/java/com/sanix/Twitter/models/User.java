@@ -16,7 +16,7 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
     @NotBlank(message="Username is required")
@@ -42,6 +42,25 @@ public class User {
     @NotBlank(message="Password is required")
     private String password;
 
+    private boolean active=true;
+
+    private String roles;
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
 
     /*@ManyToMany
     @JoinTable(name="tweet_user",
