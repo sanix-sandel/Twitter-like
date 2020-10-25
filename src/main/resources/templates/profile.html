@@ -341,15 +341,59 @@ a {
 </nav>
 
 <div class="main-container">
-
-
+    <div class="row profile-background">
+        <div class="container">
+            <div class="avatar-container">
+                <div class="avatar">
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar profile-stats">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                </div>
+                <div class="col-6">
+                    <ul>
+                        <li class="profile-stats-item-active">
+                            <a>
+                                <span class="profile-stats-item profile-stats-item-label">Tweets</span>
+                                <span class="profile-stats-item profile-stats-item-number">51</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="profile-stats-item profile-stats-item-label">Following</span>
+                                <span class="profile-stats-item profile-stats-item-number">420</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="profile-stats-item profile-stats-item-label">Followers</span>
+                                <span class="profile-stats-item profile-stats-item-number">583</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="profile-stats-item profile-stats-item-label">Likes</span>
+                                <span class="profile-stats-item profile-stats-item-number">241</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col">
+                </div>
+            </div>
+        </div>
+    </nav>
     <div class="container main-content">
         <div class="row">
             <div class="col profile-col">
 
                 <div class="profile-header">
 
-                    <h3 class="profile-fullname" th:text="${current_user}"><a>Jon Vadillo<a></h3>
+                    <h3 class="profile-fullname" ><a>Jon Vadillo<a></h3>
                     <h2 class="profile-element" ><a>@jonvadillo</a></h2>
                     <a class="profile-element profile-website" hrerf=""><i class="octicon octicon-link"></i> jonvadillo.com</a>
                     <a class="profile-element profile-website" hrerf=""><i class="octicon octicon-location"></i> Vitoria-Gasteiz, Spain</a>

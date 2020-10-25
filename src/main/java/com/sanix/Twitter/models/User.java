@@ -62,20 +62,6 @@ public class User {
         this.roles = roles;
     }
 
-    /*@ManyToMany
-    @JoinTable(name="tweet_user",
-            joinColumns = @JoinColumn(name="user_id"),
-            inverseJoinColumns=@JoinColumn(name="follower_id"))
-    private Set<User> followers=new HashSet<>();
-
-    @ManyToMany
-    @JoinTable(name="tweet_user",
-            joinColumns = @JoinColumn(name="user_id"),
-            inverseJoinColumns=@JoinColumn(name="following_id"))
-    private Set<User> following;
-*/
-
-
 
     public String getPassword() {
         return password;
@@ -129,16 +115,4 @@ public class User {
 
     }
 
-
-    /*public Set<User> getFollowers() {
-        Set contacts=this.getContacts();
-        Set<User> followers=contacts.forEach.getFollower()
-    }
-
-    public Set<User> getFollowing() {
-        Set contacts=this.getContacts();
-        Set<User> following=contacts.forEach.getFollowing()
-    }
-
-*/
 }

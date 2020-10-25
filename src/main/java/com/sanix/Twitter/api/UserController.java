@@ -1,9 +1,6 @@
 package com.sanix.Twitter.api;
 
-import com.sanix.Twitter.Dto.ContactDTO;
-import com.sanix.Twitter.Dto.UserActionDto;
-import com.sanix.Twitter.Dto.UserAuthentication;
-import com.sanix.Twitter.Dto.UserRegistration;
+import com.sanix.Twitter.Dto.*;
 import com.sanix.Twitter.models.Contact;
 import com.sanix.Twitter.models.User;
 //import com.sanix.Twitter.services.AuthService;
@@ -39,9 +36,10 @@ public class UserController {
     }
 
     @RequestMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UserAuthentication userAuthentication){
-        authService.login(userAuthentication);
-        return new ResponseEntity<>("User logged", OK);
+    public AuthenticationResponse login(@RequestBody UserAuthentication userAuthentication)throws Exception{
+
+        return authService.login(userAuthentication);
+
     }
 
     @RequestMapping("/signup")
@@ -66,11 +64,7 @@ public class UserController {
     public List<Contact> allContacts(){
         return contactService.findAll();
     }
-    /*
-    @PutMapping("/api/unfollow")
-    public void unfollow(@RequestBody UserActionDto userActionDto){
-        userService.unfollow(userActionDto);
-    }*/
+
 
     @GetMapping("/{id}/followers")
     public List<User> getFollowers(@PathVariable ("id")final Long id){
@@ -84,6 +78,8 @@ public class UserController {
         return contactService.getFollowed(user);
 
     }
+
+
 
 
 }

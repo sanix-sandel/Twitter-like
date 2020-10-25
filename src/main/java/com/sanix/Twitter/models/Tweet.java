@@ -22,8 +22,8 @@ public class Tweet {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    //@NotBlank
-    //@Size(min=5, message="A tweet must be at least 5 characters")
+    @NotBlank
+    @Size(min=5, message="A tweet must be at least 5 characters and at most 140", max=140)
     private String content;
 
 
@@ -38,8 +38,6 @@ public class Tweet {
     private Set<Comment> comments=new HashSet<>();
 
     private Instant created;
-
-
 
     @ManyToMany
     @JoinTable(name="tweet_user",
