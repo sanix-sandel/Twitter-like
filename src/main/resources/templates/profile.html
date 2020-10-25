@@ -359,12 +359,12 @@ a {
                         <li class="profile-stats-item-active">
                             <a>
                                 <span class="profile-stats-item profile-stats-item-label">Tweets</span>
-                                <span class="profile-stats-item profile-stats-item-number">51</span>
+                                <span class="profile-stats-item profile-stats-item-number" th:text="${user.tweets.size()}">51</span>
                             </a>
                         </li>
                         <li>
                             <a>
-                                <span class="profile-stats-item profile-stats-item-label">Following</span>
+                                <span class="profile-stats-item profile-stats-item-label" >Following</span>
                                 <span class="profile-stats-item profile-stats-item-number">420</span>
                             </a>
                         </li>
@@ -393,8 +393,8 @@ a {
 
                 <div class="profile-header">
 
-                    <h3 class="profile-fullname" ><a>Jon Vadillo<a></h3>
-                    <h2 class="profile-element" ><a>@jonvadillo</a></h2>
+                    <h3 class="profile-fullname" th:text="${user.getUsername()}"><a>Jon Vadillo<a></h3>
+                    <h2 class="profile-element" th:text="${user.getEmail()}"><a>@jonvadillo</a></h2>
                     <a class="profile-element profile-website" hrerf=""><i class="octicon octicon-link"></i> jonvadillo.com</a>
                     <a class="profile-element profile-website" hrerf=""><i class="octicon octicon-location"></i> Vitoria-Gasteiz, Spain</a>
                     <h2 class="profile-element"><i class="octicon octicon-calendar"></i>Joined November 2012</h2>
@@ -426,9 +426,9 @@ a {
                         <div class="tweet-content">
                             <div class="tweet-header">
                                 <span class="fullname">
-                                <strong th:text="${tweet.author.username}">Jon Vadillo</strong>
+                                <strong th:text="${user.getUsername()}">Jon Vadillo</strong>
                                 </span>
-                                <span class="username" th:text="${tweet.author.username}">@JonVadillo</span>
+                                <span class="username" th:text="${user.getEmail()}">@JonVadillo</span>
                                 <span class="tweet-time">- Jul 18</span>
                             </div>
                             <a>

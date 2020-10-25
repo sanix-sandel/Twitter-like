@@ -102,4 +102,12 @@ public class TweetServiceImpl implements TweetService{
         tweet.setContent(tweetUpdateDTO.getContent());
         tweetRepository.save(tweet);
     }
+
+    @Override
+    public Set<Tweet> tweetsByUser(User user){
+        Set<Tweet> tweetSet=new HashSet<>();
+        tweetRepository.findAll().stream().filter(t->t.getAuthor()==user).iterator()
+                .forEachRemaining(tweetSet::add);
+        return tweetSet;
+    }
 }

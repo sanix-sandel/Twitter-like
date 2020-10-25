@@ -5,6 +5,7 @@ import com.sanix.Twitter.Dto.TweetCreation;
 //import com.sanix.Twitter.dto.TweetDto;
 import com.sanix.Twitter.Dto.TweetUpdateDTO;
 import com.sanix.Twitter.models.Tweet;
+import com.sanix.Twitter.models.User;
 
 import java.util.Set;
 
@@ -20,6 +21,7 @@ public interface TweetService {
    void likeAction(TweetActionDto tweetActionDto);
    void deleteTweet(Long l);
    void updateTweet(Long l, TweetUpdateDTO tweetUpdateDTO);
+   Set<Tweet> tweetsByUser(User user);
 
 
 
