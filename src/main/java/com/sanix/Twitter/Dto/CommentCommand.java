@@ -3,7 +3,7 @@ package com.sanix.Twitter.Dto;
 public class CommentCommand {
 
     private Long tweet_id;
-    private Long content;
+    private String content;
 
     public Long getTweet_id() {
         return tweet_id;
@@ -13,11 +13,11 @@ public class CommentCommand {
         this.tweet_id = tweet_id;
     }
 
-    public Long getContent() {
+    public String getContent() {
         return content;
     }
 
-    public void setContent(Long content) {
+    public void setContent(String content) {
         this.content = content;
     }
 }

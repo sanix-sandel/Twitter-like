@@ -302,7 +302,7 @@ a {
 
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#"><i class="octicon octicon-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#" href="#" th:href="@{/}"><i class="octicon octicon-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="octicon octicon-zap"></i> Moments</a>
@@ -464,9 +464,9 @@ a {
                         <div class="container">
                             <div class="row">
                                 <div class="span4 well" style="padding-bottom:0">
-                                    <form accept-charset="UTF-8" action=""  method="POST">
+                                    <form accept-charset="UTF-8" action="" th:object="${new_comment}" th:action="@{'new_comment/'+${tweet.id}+'/saved'}" method="POST">
                                     <textarea class="span4" id="new_message" name="new_message"
-                                              placeholder="Type in your message" rows="5" cols="50" ></textarea>
+                                              placeholder="Type in your message" rows="5" cols="50" th:field="*{content}"></textarea>
                                         <h6 class="pull-right">320 characters remaining</h6>
                                         <button class="btn btn-info" type="submit">Post Comment</button>
                                     </form>

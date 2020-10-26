@@ -1,8 +1,6 @@
 package com.sanix.Twitter.controllers;
 
-import com.sanix.Twitter.Dto.TweetActionDto;
-import com.sanix.Twitter.Dto.TweetCommand;
-import com.sanix.Twitter.Dto.TweetCreation;
+import com.sanix.Twitter.Dto.*;
 import com.sanix.Twitter.models.Tweet;
 import com.sanix.Twitter.services.CommentService;
 import com.sanix.Twitter.services.TweetService;
@@ -34,6 +32,9 @@ public class TweetView {
     @RequestMapping("/{id}")
     public String TweetDetail(@PathVariable String id, Model model){
         Long Id =Long.valueOf(id);
+
+        model.addAttribute("new_comment", new CommentCommand());
+
         model.addAttribute("tweet", tweetService.findById(Id));
         model.addAttribute("comments", commentService.CommentsByTweet(Id));
         return "tweet";
@@ -47,6 +48,21 @@ public class TweetView {
         tweetCreation.setContent(tweetCommand.getContent());
         tweetService.createTweet(tweetCreation);
         return "redirect:/";
+    }
+
+    @RequestMapping("new_comment/{id}/saved")
+    public String savedComment(@PathVariable String id, @ModelAttribute CommentCommand commentCommand){
+
+        Long Id=Long.valueOf(id);
+
+        CommentCreation commentCreation=new CommentCreation();
+        commentCreation.setContent(commentCommand.getContent());
+        commentCreation.setAuthor_username(getPrincipal());
+        commentCreation.setTweet_id(Id);
+
+        commentService.createComment(commentCreation);
+
+        return "redirect:/{id}";
     }
 
     @RequestMapping("/like/{id}")
