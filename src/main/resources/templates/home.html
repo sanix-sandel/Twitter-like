@@ -302,7 +302,9 @@ a {
 
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#"><i class="octicon octicon-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" th:href="@{/}"><i class="octicon octicon-home" aria-hidden="true"></i>
+                    Home <span class="sr-only">(current)</span>
+                </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="octicon octicon-zap"></i> Moments</a>
@@ -336,7 +338,7 @@ a {
         </div>
 
 
-        <button class="btn btn-search-bar">Tweet</button>
+        <button class="btn btn-search-bar" ><a href="#" th:href="@{/new_tweet}">Tweet</a></button>
     </div>
 </nav>
 
@@ -391,9 +393,9 @@ a {
                                 <img class="tweet-card-avatar" src="https://pbs.twimg.com/profile_images/679974972278849537/bzzb-6H4_bigger.jpg" alt="">
                             </a>
                             <div class="tweet-text">
-                                <p class="" lang="es" data-aria-label-part="0" th:text="${tweet.content}">¡Nuevo artículo en Mozilla!<br>Resuelto: Corregido – Una breve historia sobre un error reportado por la comunidad <a href="https://t.co/dqg5hVQXA0" class="twitter-timeline-link" target="_blank"><span class="">https://www.mozilla-hispano.org/</span></a> <a href="" class="twitter-hashtag"><s>#</s><b>firefox</b></a> <a href="" class="twitter-hashtag"><s>#</s><b>comunidad</b></a>
+                                <a th:href='@{${tweet.id}}'><p class="" lang="es" data-aria-label-part="0" th:text="${tweet.content}">¡Nuevo artículo en Mozilla!<br>Resuelto: Corregido – Una breve historia sobre un error reportado por la comunidad <a href="https://t.co/dqg5hVQXA0" class="twitter-timeline-link" target="_blank"><span class="">https://www.mozilla-hispano.org/</span></a> <a href="" class="twitter-hashtag"><s>#</s><b>firefox</b></a> <a href="" class="twitter-hashtag"><s>#</s><b>comunidad</b></a>
                                     <a href="" class="twitter-hashtag" dir="ltr"></a>
-                                </p>
+                                </p></a>
                             </div>
                             <div class="tweet-footer">
                                 <a class="tweet-footer-btn">

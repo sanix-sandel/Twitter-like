@@ -1,6 +1,7 @@
 package com.sanix.Twitter.services;
 
 import com.sanix.Twitter.Dto.TweetActionDto;
+import com.sanix.Twitter.Dto.TweetCommand;
 import com.sanix.Twitter.Dto.TweetCreation;
 //import com.sanix.Twitter.dto.TweetDto;
 import com.sanix.Twitter.Dto.TweetUpdateDTO;
@@ -22,6 +23,7 @@ public interface TweetService {
    void deleteTweet(Long l);
    void updateTweet(Long l, TweetUpdateDTO tweetUpdateDTO);
    Set<Tweet> tweetsByUser(User user);
+  // void saveTweet(TweetCommand tweetCommand);
 
 
 

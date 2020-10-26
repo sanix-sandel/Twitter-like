@@ -8,8 +8,10 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import static java.util.stream.Collectors.toList;
 
 
 @Entity
@@ -114,5 +116,21 @@ public class User {
         getContacts().add(contact);
 
     }
+
+    public List<User> listOfFollowers(){
+
+        return getContacts().stream().filter(x->x.getFollowed()==this)
+                .map(x->x.getFollower())
+                .collect(toList());
+    }
+
+    public List<User> listOfFollowed(){
+
+        return getContacts().stream().filter(x->x.getFollower()==this)
+                .map(x->x.getFollowed())
+                .collect(toList());
+    }
+
+
 
 }

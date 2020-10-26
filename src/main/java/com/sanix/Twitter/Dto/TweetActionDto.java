@@ -12,4 +12,12 @@ public class TweetActionDto {
     public Long getUser_id() {
         return user_id;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
+    }
 }

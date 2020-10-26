@@ -336,7 +336,7 @@ a {
         </div>
 
 
-        <button class="btn btn-search-bar" href="#" th:href="@{/new_tweet}">Tweet</button>
+        <button class="btn btn-search-bar">Tweet</button>
     </div>
 </nav>
 
@@ -416,6 +416,20 @@ a {
 
 
             <div class="col-6">
+                <div class="tweet-content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="span4 well" style="padding-bottom:0">
+                                <form accept-charset="UTF-8" action="" th:object="${new_tweet}" th:action="@{/new_tweet/saved}" method="POST">
+                                    <textarea class="span4" id="new_message" name="new_message"
+                                    placeholder="Type in your message" rows="5" cols="50" th:field="*{content}"></textarea>
+                                    <h6 class="pull-right">320 characters remaining</h6>
+                                    <button class="btn btn-info" type="submit">Post New Message</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <ol class="tweet-list" th:each="tweet : ${tweets}">
                     <li class="tweet-card">
                         <div class="tweet-content">
