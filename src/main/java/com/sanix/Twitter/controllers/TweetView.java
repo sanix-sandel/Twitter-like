@@ -2,9 +2,12 @@ package com.sanix.Twitter.controllers;
 
 import com.sanix.Twitter.Dto.*;
 import com.sanix.Twitter.models.Tweet;
+import com.sanix.Twitter.models.User;
 import com.sanix.Twitter.services.CommentService;
 import com.sanix.Twitter.services.TweetService;
 import com.sanix.Twitter.services.UserService;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//import static jdk.internal.jline.internal.Log.debug;
+
+@Slf4j
 @Controller
 @RequestMapping("")
 public class TweetView {
@@ -77,6 +83,24 @@ public class TweetView {
         tweetActionDto.setUser_id(user_id);
 
         tweetService.likeAction(tweetActionDto);
+
+        return "redirect:/";
+    }
+
+
+
+    @GetMapping
+    @RequestMapping("tweet/{id}/delete")
+    public String deleteById(@PathVariable String id){
+        //Logger log.debug("Deleting id: " +id);
+
+       // Tweet tweet=tweetService.findById(Long.valueOf(id));
+        Tweet tweet=tweetService.findById(Long.valueOf(id));
+        User user=userService.findByUsername(getPrincipal());
+
+        if(user ==tweet.getAuthor()){
+            tweetService.deleteTweet(Long.valueOf(id));
+        }
 
         return "redirect:/";
     }

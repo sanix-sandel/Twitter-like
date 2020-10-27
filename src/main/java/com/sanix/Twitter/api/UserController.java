@@ -35,7 +35,7 @@ public class UserController {
 
     }
 
-    @RequestMapping("/login")
+    @RequestMapping(value="/login", method=RequestMethod.POST)
     public AuthenticationResponse login(@RequestBody UserAuthentication userAuthentication)throws Exception{
 
         return authService.login(userAuthentication);

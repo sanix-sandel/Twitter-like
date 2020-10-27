@@ -15,13 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-public class jwtFilter extends OncePerRequestFilter {
+public class JwtFilter extends OncePerRequestFilter {
 
     private MyUserDetailsService userDetailsService;
 
    private JwtProvider jwtProvider;
 
-    public jwtFilter(MyUserDetailsService userDetailsService, JwtProvider jwtProvider) {
+    public JwtFilter(MyUserDetailsService userDetailsService, JwtProvider jwtProvider) {
         this.userDetailsService = userDetailsService;
         this.jwtProvider = jwtProvider;
     }
