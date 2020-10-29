@@ -102,6 +102,7 @@ public class TweetView {
             tweetService.deleteTweet(Long.valueOf(id));
         }
 
+
         return "redirect:/";
     }
 
