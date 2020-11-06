@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/api/tweets/")
+@RequestMapping("/api/tweets")
 public class TweetController {
 
     private final TweetService tweetService;
@@ -62,10 +62,5 @@ public class TweetController {
     public void likeTweet(@RequestBody TweetActionDto tweetActionDto){
         tweetService.likeAction(tweetActionDto);
     }
-
-    /*@GetMapping()
-    public void getUserTweets(){
-
-    }*/
 
 }

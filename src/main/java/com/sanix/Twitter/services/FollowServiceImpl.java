@@ -33,31 +33,28 @@ public class FollowServiceImpl implements FollowService{
         User followed=followedOptional.get();
 
         Contact contact=new Contact(followed, follower);
-        //followed.setContact(contact);
-        //follower.setContact(contact);
 
-        //userRepository.save(followed);
-        //userRepository.save(follower);
         contactRepository.save(contact);
 
     }
 
-    /*@Override
+    @Override
     public void unfollow(ContactDTO contactDTO){
-        Long follower_id=contactDTO.getFollower_id();
-        Optional<User> followerOptional=userRepository.findById(follower_id);
-        User follower=followerOptional.get();
 
-        Long followed_id=contactDTO.getFollowed_id();
-        Optional<User> followedOptional=userRepository.findById(followed_id);
-        User followed=followedOptional.get();
+        Optional<User> followeropt=userRepository.findById(contactDTO.getFollower_id());
+        Optional <User> followedopt=userRepository.findById(contactDTO.getFollowed_id());
 
-        Contact contact=
+        User follower=followeropt.get();
+        User followed=followedopt.get();
+
+        Contact contact=contactRepository.findAll()
+                .stream()
+                .filter(x->x.getFollower()==follower)
+                .filter(x->x.getFollowed()==followed)
+                .findFirst().get();
         contactRepository.delete(contact);
-        followed.deleteContact(contact);
-        follower.deleteContact(contact);
 
-        userRepository.save(follower);
-        userRepository.save(followed);
-    }*/
+    }
+
+
 }

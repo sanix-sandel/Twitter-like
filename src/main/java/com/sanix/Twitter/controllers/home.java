@@ -1,5 +1,6 @@
 package com.sanix.Twitter.controllers;
 
+import com.sanix.Twitter.models.User;
 import com.sanix.Twitter.services.AuthService;
 import com.sanix.Twitter.services.TweetService;
 import com.sanix.Twitter.services.UserService;
@@ -23,9 +24,9 @@ public class home {
 
     @RequestMapping({"", "/"})
     public String getIndexPage(Model model){
-        model.addAttribute("current_user", getPrincipal());
+        model.addAttribute("current_user", getUser());
         model.addAttribute("tweets", tweetService.getTweets());
-        model.addAttribute("users", userService.getAll());
+        model.addAttribute("users", userService.usersToFollow(getUser()));
         return "home";
     }
 
@@ -40,5 +41,11 @@ public class home {
             userName=principal.toString();
         }
         return userName;
+    }
+
+    private User getUser(){
+        String username=getPrincipal();
+        User user=userService.findByUsername(username);
+        return user;
     }
 }

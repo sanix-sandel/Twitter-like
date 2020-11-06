@@ -64,7 +64,6 @@ public class User {
         this.roles = roles;
     }
 
-
     public String getPassword() {
         return password;
     }
@@ -76,8 +75,7 @@ public class User {
     public Set<Comment> getComments() {
         return comments;
     }
-
-
+    
     public Long getId() {
         return id;
     }
@@ -105,8 +103,6 @@ public class User {
     public Set<Contact> getContacts() {
         return contacts;
     }
-
-
 
     public Set<Tweet> getTweets() {
         return tweets;

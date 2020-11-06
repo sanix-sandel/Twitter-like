@@ -6,6 +6,7 @@ import com.sanix.Twitter.models.User;
 import com.sanix.Twitter.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -57,39 +58,15 @@ public class UserServiceImpl implements UserService{
         return userOptional.get();
     }
 
-    /*@Override
-    public void follow(UserActionDto userActionDto){
-        Optional <User> userOptional1=userRepository.findById(userActionDto.getId());
-        Optional <User> userOptional2=userRepository.findById(userActionDto.getUser_id());
-
-        if(!userOptional1.isPresent() || !userOptional2.isPresent()){
-            throw new RuntimeException("User not found");
-        }
-
-        User user=userOptional1.get();
-        User target=userOptional2.get();
-
-        user.follow(target);
-        userRepository.save(user);
-        userRepository.save(target);
+    @Override
+    public List<User> usersToFollow(User user){
+        ArrayList<User> liste=new ArrayList<>();
+        liste.addAll(userRepository.findAll()
+                .stream()
+                .filter(x->x!=user).collect(toList()));
+        return liste;
     }
 
 
-    @Override
-    public void unfollow(UserActionDto userActionDto){
-        Optional <User> userOptional1=userRepository.findById(userActionDto.getId());
-        Optional <User> userOptional2=userRepository.findById(userActionDto.getUser_id());
-
-        if(!userOptional1.isPresent() || !userOptional2.isPresent()){
-            throw new RuntimeException("User not found");
-        }
-
-        User user=userOptional1.get();
-        User target=userOptional2.get();
-
-        user.unfollow(target);
-        userRepository.save(user);
-        userRepository.save(target);
-    }*/
 
 }

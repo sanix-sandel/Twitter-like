@@ -5,5 +5,5 @@ import com.sanix.Twitter.models.User;
 
 public interface FollowService {
     void follow(ContactDTO contactDTO);
-    //void unfollow(ContactDTO contactDTO);
+    void unfollow(ContactDTO contactDTO);
 }
