@@ -30,6 +30,12 @@ public class home {
         return "home";
     }
 
+    @RequestMapping("/guide")
+    public String getGuidePage(){
+
+        return "guide";
+    }
+
 
     private String getPrincipal(){
         String userName=null;
